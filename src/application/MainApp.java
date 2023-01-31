@@ -1,5 +1,6 @@
 package application;
 
+import controller.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -48,13 +49,31 @@ public class MainApp extends Application {
      */
     public void showLogin() {
         try {
-            // Load person overview.
+            // Load login form view.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/view/LoginView.fxml"));
             AnchorPane loginview = (AnchorPane) loader.load();
 
             // Set login into the center of root layout.
             rootLayout.setCenter(loginview);
+
+            LoginController controller = loader.getController();
+
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showHome() {
+        try {
+            // Load home view.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/view/HomeView.fxml"));
+            AnchorPane homeview = (AnchorPane) loader.load();
+
+            // Set home into the center of root layout.
+            rootLayout.setCenter(homeview);
         } catch (IOException e) {
             e.printStackTrace();
         }
