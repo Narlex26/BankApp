@@ -1,5 +1,6 @@
 package application;
 
+import controller.HomeController;
 import controller.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -57,9 +58,9 @@ public class MainApp extends Application {
             // Set login into the center of root layout.
             rootLayout.setCenter(loginview);
 
-            LoginController controller = loader.getController();
+            LoginController logincontroller = loader.getController();
 
-            controller.setMainApp(this);
+            logincontroller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,6 +75,10 @@ public class MainApp extends Application {
 
             // Set home into the center of root layout.
             rootLayout.setCenter(homeview);
+
+            HomeController homecontroller = loader.getController();
+
+            homecontroller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }

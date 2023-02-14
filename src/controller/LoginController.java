@@ -24,15 +24,15 @@ public class LoginController {
 
     public void handleConnexionOk()
     {
-        //on cr�e un nouvel objet commercialDao
+        //on crée un nouvel objet conseillerDao
         ConseillerDao csdao= new ConseillerDao();
-        //on recup�re le contenu des chl=amps login et password
+        //on recupère le contenu des champs login et password
         String login= tfLogin.getText();
         String password= tfPassword.getText();
-        //on les passe en param�tre de la m�thode du dao
+        //on les passe en parametre de la méthode du dao
         csdao.loginRequest(login, password);
 
-        //si les infos existent en base on permet � l'utilisateur d'acc�der � la fen�tre suivante
+        //si les infos existent en base on permet à l'utilisateur d'accéder à la fenêtre suivante
         if (csdao.loginRequest(login, password)){
 
             mainapp.showHome();

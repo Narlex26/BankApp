@@ -12,6 +12,8 @@ public class Conseiller {
     private StringProperty nom_utilisateur_conseiller;
     private StringProperty password_conseiller;
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     public Conseiller(IntegerProperty id_conseiller, StringProperty nom_conseiller, StringProperty prenom_conseiller, StringProperty nom_utilisateur_conseiller, StringProperty password_conseiller) {
         this.id_conseiller = id_conseiller;
         this.nom_conseiller = nom_conseiller;
@@ -29,6 +31,7 @@ public class Conseiller {
         this.password_conseiller= new SimpleStringProperty(password_conseiller);
     }
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public int getId_conseiller() {
         return id_conseiller.get();

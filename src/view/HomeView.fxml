@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    <children>
-      <Label layoutX="248.0" layoutY="191.0" text="Vous êtes connecté" />
+      <Text layoutX="635.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue" />
+      <AnchorPane id="account-search-form" layoutY="114.0" prefHeight="200.0" prefWidth="800.0">
+         <children>
+            <TextField fx:id="surname_search" layoutX="111.0" layoutY="45.0" />
+            <Text layoutX="65.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" />
+            <Text layoutX="49.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom :" />
+            <TextField fx:id="name_search" layoutX="111.0" layoutY="105.0" />
+            <TextField fx:id="phone_number_search" layoutX="565.0" layoutY="45.0" />
+            <Text layoutX="431.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro de téléphone :" />
+            <Text layoutX="525.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ville :" />
+            <TextField fx:id="city_search" layoutX="565.0" layoutY="106.0" />
+            <Button fx:id="search" layoutX="362.0" layoutY="160.0" mnemonicParsing="false" onAction="#searchAccountByAttributes" text="Rechercher" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tb_bank_account" layoutX="25.0" layoutY="372.0" prefHeight="200.0" prefWidth="750.0">
+        <columns>
+            <TableColumn fx:id="cl_account_number" prefWidth="140.0" text="Numéro de compte" />
+            <TableColumn fx:id="cl_surname" prefWidth="100.0" text="Nom" />
+            <TableColumn fx:id="cl_name" prefWidth="85.5999755859375" text="Prénom" />
+            <TableColumn fx:id="cl_city" prefWidth="114.4000244140625" text="Ville" />
+            <TableColumn fx:id="cl_phone_number" prefWidth="150.0" text="Numéro de téléphone" />
+            <TableColumn fx:id="cl_balance" prefWidth="159.19998779296873" text="Solde" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
