@@ -1,20 +1,16 @@
 package controller;
 
 import application.MainApp;
-import javafx.beans.property.IntegerProperty;
-import model.CompteBancaire;
-import dao.CompteBancaireDao;
-import model.Client;
-import dao.ClientDao;
 
-import javafx.fxml.FXML;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import dao.CompteBancaireDao;
+import dao.ConseillerDao;
+import model.CompteBancaire;
+import model.Conseiller;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
 
 import java.util.ArrayList;
 
@@ -43,7 +39,11 @@ public class HomeController {
     @FXML
     private TableColumn<CompteBancaire, String> cl_phone_number;
     @FXML
-    private TableColumn<CompteBancaire, Number> cl_balance;
+    private TableColumn<CompteBancaire, String> cl_balance;
+    @FXML
+    private Label name_person_connected;
+    private String  login;
+    ConseillerDao conseillerDao = new ConseillerDao();
     private MainApp mainapp;
 
     public void setMainApp(MainApp mainapp) {
@@ -112,16 +112,38 @@ public class HomeController {
 
         listeCompteBancaire=comptebancaireDao.searchAccountByAttributes(crit);
 
-        //permet la conversion d'une arraylist en observablelist utilisée en javafx
-        ObservableList<CompteBancaire> data= FXCollections.observableArrayList(listeCompteBancaire);
+            //permet la conversion d'une arraylist en observablelist utilisée en javafx
+            ObservableList<CompteBancaire> data= FXCollections.observableArrayList(listeCompteBancaire);
 
-        tb_bank_account.setItems(data);
-        cl_account_number.setCellValueFactory(cellData -> cellData.getValue().numero_compte_bancaireProperty());
-        cl_surname.setCellValueFactory(cellData-> cellData.getValue().getClient().nom_clientProperty());
-        cl_name.setCellValueFactory(cellData-> cellData.getValue().getClient().prenom_clientProperty());
-        cl_city.setCellValueFactory(cellData -> cellData.getValue().getClient().ville_clientProperty());
-        cl_phone_number.setCellValueFactory(cellData-> cellData.getValue().getClient().numero_tel_clientProperty());
-        cl_balance.setCellValueFactory(cellData -> cellData.getValue().solde_compte_bancaireProperty());
+            tb_bank_account.setItems(data);
+            cl_account_number.setCellValueFactory(cellData -> cellData.getValue().numero_compte_bancaireProperty());
+            cl_surname.setCellValueFactory(cellData-> cellData.getValue().getClient().nom_clientProperty());
+            cl_name.setCellValueFactory(cellData-> cellData.getValue().getClient().prenom_clientProperty());
+            cl_city.setCellValueFactory(cellData -> cellData.getValue().getClient().ville_clientProperty());
+            cl_phone_number.setCellValueFactory(cellData-> cellData.getValue().getClient().numero_tel_clientProperty());
+            cl_balance.setCellValueFactory(cellData -> cellData.getValue().solde_compte_bancaireProperty_with_logo());
 
+    }
+
+    public void setLogin(String login) {
+        this.login=login;
+    }
+
+    public void showNamePersonConnected() {
+        Conseiller conseiller = conseillerDao.recupInfosConseiller(login);
+
+        String nom = conseiller.getPrenom_conseiller()+" "+conseiller.getNom_conseiller();
+        name_person_connected.setText(nom);
+    }
+
+    public void consulterDetailsCompte(){
+        CompteBancaireDao compteBancaireDao = new CompteBancaireDao();
+
+        int selectedIndex= tb_bank_account.getSelectionModel().getSelectedIndex();
+
+        if (selectedIndex >=0) {
+            CompteBancaire compteBancaire = tb_bank_account.getItems().get(selectedIndex);
+            mainapp.showBankAccountDetails(compteBancaire, this.login);
+        }
     }
 }

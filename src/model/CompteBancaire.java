@@ -2,6 +2,7 @@ package model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class CompteBancaire {
@@ -52,6 +53,11 @@ public class CompteBancaire {
 
     public void setSolde_compte_bancaire(int solde_compte_bancaire) {
         this.solde_compte_bancaire.set(solde_compte_bancaire);
+    }
+    public StringProperty solde_compte_bancaireProperty_with_logo() {
+        StringProperty stringProperty = new SimpleStringProperty();
+        stringProperty.set(solde_compte_bancaire.getValue()+"€");
+        return stringProperty;
     }
 
     public Conseiller getConseiller() {

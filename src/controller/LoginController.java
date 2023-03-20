@@ -1,11 +1,12 @@
 package controller;
 
 import application.MainApp;
+
 import dao.ConseillerDao;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class LoginController {
@@ -22,8 +23,8 @@ public class LoginController {
         this.mainapp = mainapp;
     }
 
-    public void handleConnexionOk()
-    {
+    public void handleConnexionOk() {
+
         //on crée un nouvel objet conseillerDao
         ConseillerDao csdao= new ConseillerDao();
         //on recupère le contenu des champs login et password
@@ -35,12 +36,8 @@ public class LoginController {
         //si les infos existent en base on permet à l'utilisateur d'accéder à la fenêtre suivante
         if (csdao.loginRequest(login, password)){
 
-            mainapp.showHome();
-
-        }
-
-        //sinon on affiche un message d'erreur
-        else {
+            mainapp.showHome(login);
+        } else { //sinon on affiche un message d'erreur
 
             MainApp mainapp= new MainApp();
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -51,8 +48,6 @@ public class LoginController {
 
             alert.showAndWait();
         }
-
-
 
     }
 }

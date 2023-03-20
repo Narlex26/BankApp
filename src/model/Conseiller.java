@@ -13,7 +13,9 @@ public class Conseiller {
     private StringProperty password_conseiller;
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
+    public Conseiller(){
 
+    }
     public Conseiller(IntegerProperty id_conseiller, StringProperty nom_conseiller, StringProperty prenom_conseiller, StringProperty nom_utilisateur_conseiller, StringProperty password_conseiller) {
         this.id_conseiller = id_conseiller;
         this.nom_conseiller = nom_conseiller;

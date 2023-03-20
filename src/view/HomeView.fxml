@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -9,7 +10,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    <children>
-      <Text layoutX="635.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue" />
+      <Text layoutX="621.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue" />
       <AnchorPane id="account-search-form" layoutY="114.0" prefHeight="200.0" prefWidth="800.0">
          <children>
             <TextField fx:id="surname_search" layoutX="111.0" layoutY="45.0" />
@@ -23,7 +24,7 @@
             <Button fx:id="search" layoutX="362.0" layoutY="160.0" mnemonicParsing="false" onAction="#searchAccountByAttributes" text="Rechercher" />
          </children>
       </AnchorPane>
-      <TableView fx:id="tb_bank_account" layoutX="25.0" layoutY="372.0" prefHeight="200.0" prefWidth="750.0">
+      <TableView fx:id="tb_bank_account" layoutX="24.0" layoutY="334.0" prefHeight="200.0" prefWidth="750.0">
         <columns>
             <TableColumn fx:id="cl_account_number" prefWidth="140.0" text="Numéro de compte" />
             <TableColumn fx:id="cl_surname" prefWidth="100.0" text="Nom" />
@@ -33,5 +34,8 @@
             <TableColumn fx:id="cl_balance" prefWidth="159.19998779296873" text="Solde" />
         </columns>
       </TableView>
+      <Text layoutX="375.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BankApp" />
+      <Label fx:id="name_person_connected" layoutX="678.0" layoutY="22.0" prefHeight="18.0" prefWidth="108.0" />
+      <Button layoutX="313.0" layoutY="541.0" mnemonicParsing="false" onAction="#consulterDetailsCompte" text="Afficher les détails du compte" />
    </children>
 </AnchorPane>

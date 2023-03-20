@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.BankAccountDetailsView">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BankAccountDetailsController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="71.0" layoutY="90.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.4048096192384769" layoutX="71.0" layoutY="90.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="599.0" prefWidth="300.0">
                <children>
-                  <Text layoutX="35.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des opérations" />
-                  <TableView layoutX="6.0" layoutY="48.0" prefHeight="350.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0">
+                  <Text layoutX="107.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des opérations" />
+                  <TableView fx:id="tb_operations_account" layoutX="6.0" layoutY="49.0" prefHeight="550.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="49.0">
                     <columns>
-                      <TableColumn prefWidth="87.5" text="Type" />
-                      <TableColumn prefWidth="87.5" text="Montant" />
+                      <TableColumn fx:id="cl_types_operation" prefWidth="100.0" text="Type" />
+                      <TableColumn fx:id="cl_montant_operation" minWidth="0.0" prefWidth="100.0" text="Montant" />
+                        <TableColumn fx:id="cl_date_operation" minWidth="0.0" prefWidth="119.20002746582031" text="Date" />
                     </columns>
                   </TableView>
                </children></AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="599.0" prefWidth="508.0">
                <children>
-                  <SplitPane dividerPositions="0.5" layoutX="89.0" layoutY="32.0" prefHeight="235.0" prefWidth="418.0" AnchorPane.bottomAnchor="163.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitPane dividerPositions="0.5" layoutX="11.0" layoutY="32.0" prefHeight="235.0" prefWidth="482.0" AnchorPane.bottomAnchor="163.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="160.0">
                            <children>
@@ -35,10 +39,28 @@
                               <Text layoutX="129.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ville client :" />
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="160.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="160.0">
+                           <children>
+                              <Label fx:id="numeros_compte_bancaire" layoutX="26.0" layoutY="14.0" />
+                              <Label fx:id="noms_client" layoutX="26.0" layoutY="43.0" />
+                              <Label fx:id="prenoms_client" layoutX="26.0" layoutY="71.0" />
+                              <Label fx:id="nums_tel_client" layoutX="26.0" layoutY="100.0" />
+                              <Label fx:id="adresses_client" layoutX="26.0" layoutY="127.0" />
+                              <Label fx:id="codes_postal_client" layoutX="26.0" layoutY="156.0" />
+                              <Label fx:id="villes_client" layoutX="26.0" layoutY="187.0" />
+                              <Label fx:id="soldes_compte_bancaire" layoutX="26.0" layoutY="264.0" />
+                           </children></AnchorPane>
                     </items>
                   </SplitPane>
                   <Text layoutX="87.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solde du compte :" />
+                  <ButtonBar layoutX="102.0" layoutY="463.0" prefHeight="40.0" prefWidth="174.0">
+                    <buttons>
+                        <Button mnemonicParsing="false" onAction="#newDepositIntoAccount" text="Dépot" />
+                        <Button mnemonicParsing="false" onAction="#newWithdrawalIntoAccount" prefWidth="97.0" text="Retrait" />
+                        <Button fx:id="btrefresh" mnemonicParsing="false" onAction="#refreshInfoAndTransactionBankAccount" text="Actualiser" />
+                    </buttons>
+                  </ButtonBar>
+                <Button layoutX="210.0" layoutY="533.0" mnemonicParsing="false" onAction="#returnBackToHome" text="Retour" />
                </children>
             </AnchorPane>
         </items>

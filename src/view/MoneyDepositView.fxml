@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MoneyDepositController">
+   <children>
+      <Text layoutX="109.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nouveau dépot" />
+      <Text layoutX="41.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Montant :" />
+      <Text layoutX="62.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date :" />
+      <TextField fx:id="tfAmountDeposit" layoutX="117.0" layoutY="87.0" />
+      <DatePicker fx:id="dpDateOfDeposit" layoutX="117.0" layoutY="164.0" prefHeight="26.0" prefWidth="150.0" />
+      <Button fx:id="btConfirmedDeposit" layoutX="122.0" layoutY="243.0" mnemonicParsing="false" onAction="#DepositIntoAccount" text="Ajouter" />
+   </children>
+</AnchorPane>
