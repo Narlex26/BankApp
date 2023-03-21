@@ -7,7 +7,9 @@ import dao.ConseillerDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 
 public class LoginController {
 
@@ -16,27 +18,39 @@ public class LoginController {
     @FXML
     private TextField tfLogin;
     @FXML
-    private TextField tfPassword;
+    private PasswordField tfPassword;
     private MainApp mainapp;
 
     public void setMainApp(MainApp mainapp) {
         this.mainapp = mainapp;
     }
 
+    public void onEnterPress() {
+        tfPassword.setOnAction(event -> handleConnexionOk());
+        tfPassword.setOnKeyPressed(event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                handleConnexionOk();
+            }
+        });
+    }
+
     public void handleConnexionOk() {
 
         //on crée un nouvel objet conseillerDao
-        ConseillerDao csdao= new ConseillerDao();
+        ConseillerDao conseillerDao= new ConseillerDao();
+
         //on recupère le contenu des champs login et password
         String login= tfLogin.getText();
         String password= tfPassword.getText();
+
         //on les passe en parametre de la méthode du dao
-        csdao.loginRequest(login, password);
+        conseillerDao.loginRequest(login, password);
 
         //si les infos existent en base on permet à l'utilisateur d'accéder à la fenêtre suivante
-        if (csdao.loginRequest(login, password)){
+        if (conseillerDao.loginRequest(login, password)){
 
             mainapp.showHome(login);
+
         } else { //sinon on affiche un message d'erreur
 
             MainApp mainapp= new MainApp();

@@ -63,6 +63,7 @@ public class MainApp extends Application {
 
             //Appels des méthodes du controller
             logincontroller.setMainApp(this);
+            logincontroller.onEnterPress();
 
         } catch (IOException e) {
             e.printStackTrace();
