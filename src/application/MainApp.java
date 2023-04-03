@@ -1,14 +1,16 @@
 package application;
 
 import controller.*;
+import model.CompteBancaire;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.CompteBancaire;
 
 import java.io.IOException;
 
@@ -20,7 +22,12 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+
+        // Set application name
         this.primaryStage.setTitle("BankApp");
+
+        // Set application icon
+        this.primaryStage.getIcons().add(new Image("C:\\Users\\alexa\\eclipse-workspace\\BankApp\\asset\\logo_bankapp.png"));
 
         initRootLayout();
 
@@ -59,10 +66,12 @@ public class MainApp extends Application {
             // Set login view  into the center of root layout.
             rootLayout.setCenter(loginview);
 
+            // Identification du controller
             LoginController logincontroller = loader.getController();
 
             //Appels des méthodes du controller
             logincontroller.setMainApp(this);
+
             logincontroller.onEnterPress();
 
         } catch (IOException e) {
@@ -80,6 +89,7 @@ public class MainApp extends Application {
             // Set home view into the center of root layout.
             rootLayout.setCenter(homeview);
 
+            // Identification du controller
             HomeController homecontroller = loader.getController();
 
             //Appels des méthodes du controller
@@ -89,6 +99,41 @@ public class MainApp extends Application {
             homecontroller.showNamePersonConnected();
 
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showCreateClientAndAccountPopUp(String login){
+
+        try {
+            // Load CreateClientAndAccountView
+            FXMLLoader loader= new FXMLLoader();
+
+            loader.setLocation(MainApp.class.getResource("/view/CreateClientAndAccountView.fxml"));
+            AnchorPane createclientandaccountview = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Créer un client et un compte");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(createclientandaccountview);
+            dialogStage.setScene(scene);
+
+            // Identification du controller
+            CreateClientAndAccountController createClientandAccountController = loader.getController();
+
+            //Appels des méthodes du controller
+            createClientandAccountController.setDialogStage(dialogStage);
+            createClientandAccountController.setMainApp(this);
+
+            createClientandAccountController.setLogin(login);
+            createClientandAccountController.getIdPersonConnected();
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -103,6 +148,7 @@ public class MainApp extends Application {
             // Set BankAccountDetails view into the center of root layout.
             rootLayout.setCenter(bankaccountdetailsview);
 
+            // Identification du controller
             BankAccountDetailsController bankAccountDetailsController = loader.getController();
 
             //Appels des méthodes du controller
@@ -135,6 +181,7 @@ public class MainApp extends Application {
             Scene scene = new Scene(moneydepositview);
             dialogStage.setScene(scene);
 
+            // Identification du controller
             MoneyDepositController moneyDepositController = loader.getController();
 
             //Appels des méthodes du controller
@@ -168,6 +215,7 @@ public class MainApp extends Application {
             Scene scene = new Scene(moneywithdrawalview);
             dialogStage.setScene(scene);
 
+            // Identification du controller
             MoneyWithdrawalController moneyWithdrawalController = loader.getController();
 
             //Appels des méthodes du controller

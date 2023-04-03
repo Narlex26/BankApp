@@ -1,30 +1,27 @@
 package model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class CompteBancaire {
 
     private IntegerProperty numero_compte_bancaire;
-    private IntegerProperty solde_compte_bancaire;
+    private DoubleProperty solde_compte_bancaire;
     private Conseiller conseiller;
     private Client client;
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public CompteBancaire(IntegerProperty numero_compte_bancaire, IntegerProperty solde_compte_bancaire, Conseiller conseiller, Client client) {
+    public CompteBancaire(IntegerProperty numero_compte_bancaire, DoubleProperty solde_compte_bancaire, Conseiller conseiller, Client client) {
         this.numero_compte_bancaire = numero_compte_bancaire;
         this.solde_compte_bancaire = solde_compte_bancaire;
         this.conseiller = conseiller;
         this.client = client;
     }
 
-    public CompteBancaire(Integer numero_compte_bancaire, Integer solde_compte_bancaire, Conseiller conseiller, Client client){
+    public CompteBancaire(Integer numero_compte_bancaire, Double solde_compte_bancaire, Conseiller conseiller, Client client){
 
         this.numero_compte_bancaire = new SimpleIntegerProperty(numero_compte_bancaire);
-        this.solde_compte_bancaire =new SimpleIntegerProperty(solde_compte_bancaire);
+        this.solde_compte_bancaire =new SimpleDoubleProperty(solde_compte_bancaire);
         this.conseiller = conseiller;
         this.client = client;
     }
@@ -43,11 +40,11 @@ public class CompteBancaire {
         this.numero_compte_bancaire.set(numero_compte_bancaire);
     }
 
-    public int getSolde_compte_bancaire() {
+    public Double getSolde_compte_bancaire() {
         return solde_compte_bancaire.get();
     }
 
-    public IntegerProperty solde_compte_bancaireProperty() {
+    public DoubleProperty solde_compte_bancaireProperty() {
         return solde_compte_bancaire;
     }
 

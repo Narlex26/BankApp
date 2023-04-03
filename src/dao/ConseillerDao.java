@@ -23,7 +23,7 @@ public class ConseillerDao {
             if (rs.next()) {
 
                 connexionOk = true;
-                System.out.println("c'est en base");
+                System.out.println("Le conseiller est bien présent en base de données");
 
             }
 

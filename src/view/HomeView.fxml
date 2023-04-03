@@ -64,5 +64,6 @@
             </LinearGradient>
          </textFill>
       </Label>
+      <Button fx:id="create_client" layoutX="50.0" layoutY="45.0" mnemonicParsing="false" onAction="#newClientAndAccount" text="Créer client" />
    </children>
 </AnchorPane>

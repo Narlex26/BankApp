@@ -87,7 +87,7 @@ public class BankAccountDetailsController {
             String ville_client = compteBancaire.getClient().getVille_client();
             villes_client.setText(ville_client);
 
-            Integer solde_compte_bancaire = compteBancaire.getSolde_compte_bancaire();
+            Double solde_compte_bancaire = compteBancaire.getSolde_compte_bancaire();
             soldes_compte_bancaire.setText(solde_compte_bancaire.toString()+"€");
     }
 
@@ -110,7 +110,6 @@ public class BankAccountDetailsController {
 
     public void refreshInfoAndTransactionBankAccount(){
         CompteBancaireDao compteBancaireDao = new CompteBancaireDao();
-        OperationBancaireDao operationBancaireDao = new OperationBancaireDao();
 
         //------------------------------------------------------------------------------------------
 
@@ -137,23 +136,12 @@ public class BankAccountDetailsController {
             String ville_client = compteBancaire.getClient().getVille_client();
             villes_client.setText(ville_client);
 
-            Integer solde_compte_bancaire = compteBancaire.getSolde_compte_bancaire();
+            Double solde_compte_bancaire = compteBancaire.getSolde_compte_bancaire();
             soldes_compte_bancaire.setText(solde_compte_bancaire.toString()+"€");
 
         //------------------------------------------------------------------------------------------
 
         this.showTransactionBankAccount();
-        /*ArrayList<OperationBancaire> listoperationbancaire= new ArrayList();
-
-        listoperationbancaire=operationBancaireDao.listAllOperationBancaire(this.comptebancaire);
-
-            //permet la conversion d'une arraylist en observablelist utilisée en javafx
-            ObservableList<OperationBancaire> data= FXCollections.observableArrayList(listoperationbancaire);
-
-            tb_operations_account.setItems(data);
-            cl_types_operation.setCellValueFactory(cellData -> cellData.getValue().libelle_type_operationProperty());
-            cl_montant_operation.setCellValueFactory(cellData-> cellData.getValue().montant_operation_bancaireProperty());
-            cl_date_operation.setCellValueFactory(cellData-> cellData.getValue().getDate_operation_bancaire());*/
     }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------

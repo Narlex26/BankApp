@@ -26,7 +26,6 @@ public class LoginController {
     }
 
     public void onEnterPress() {
-        tfPassword.setOnAction(event -> handleConnexionOk());
         tfPassword.setOnKeyPressed(event -> {
             if (event.getCode().equals(KeyCode.ENTER)) {
                 handleConnexionOk();
@@ -42,9 +41,6 @@ public class LoginController {
         //on recupère le contenu des champs login et password
         String login= tfLogin.getText();
         String password= tfPassword.getText();
-
-        //on les passe en parametre de la méthode du dao
-        conseillerDao.loginRequest(login, password);
 
         //si les infos existent en base on permet à l'utilisateur d'accéder à la fenêtre suivante
         if (conseillerDao.loginRequest(login, password)){

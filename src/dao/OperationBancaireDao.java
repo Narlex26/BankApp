@@ -97,7 +97,7 @@ public class OperationBancaireDao {
 
                 Integer id_operation_bancaire= Integer.valueOf(rs.getString("id_operation_bancaire"));
                 String libelle_type_operation=rs.getString("libelle_type_operation");
-                Integer montant_operation_bancaire= Integer.valueOf(rs.getString("montant_operation_bancaire"));
+                Double montant_operation_bancaire= Double.valueOf(rs.getString("montant_operation_bancaire"));
                 String date_operation_bancaire= rs.getString("date_operation_bancaire");
 
                 OperationBancaire operationBancaire = new OperationBancaire(id_operation_bancaire,date_operation_bancaire,montant_operation_bancaire,libelle_type_operation);

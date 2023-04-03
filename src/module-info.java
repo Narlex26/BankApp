@@ -6,6 +6,7 @@ module application.MainApp {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires mysql.connector.j;
 
     opens application to javafx.fxml;
     exports application;

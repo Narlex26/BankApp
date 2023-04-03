@@ -50,6 +50,19 @@ public class HomeController {
         this.mainapp = mainapp;
     }
 
+    public void setLogin(String login) {
+        this.login=login;
+    }
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void showNamePersonConnected() {
+        Conseiller conseiller = conseillerDao.recupInfosConseiller(login);
+
+        String nom = conseiller.getPrenom_conseiller()+" "+conseiller.getNom_conseiller();
+        name_person_connected.setText(nom);
+    }
+
     public void searchAccountByAttributes() {
 
         CompteBancaireDao comptebancaireDao= new CompteBancaireDao();
@@ -125,15 +138,8 @@ public class HomeController {
 
     }
 
-    public void setLogin(String login) {
-        this.login=login;
-    }
-
-    public void showNamePersonConnected() {
-        Conseiller conseiller = conseillerDao.recupInfosConseiller(login);
-
-        String nom = conseiller.getPrenom_conseiller()+" "+conseiller.getNom_conseiller();
-        name_person_connected.setText(nom);
+    public void newClientAndAccount() {
+        mainapp.showCreateClientAndAccountPopUp(this.login);
     }
 
     public void consulterDetailsCompte(){

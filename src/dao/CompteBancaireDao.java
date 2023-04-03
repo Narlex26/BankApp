@@ -11,6 +11,40 @@ public class CompteBancaireDao {
 
     Connection laConnection=Dao.initConnection();
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public Boolean createBankAccount(int id_client, int id_conseiller) {
+
+        Boolean createbankaccountOk = false;
+
+        try {
+
+            Statement st = laConnection.createStatement();
+            String sql = "INSERT INTO compte_bancaire (solde_compte_bancaire, id_conseiller, id_client) VALUES (?, ?, ?)";
+            PreparedStatement statement = laConnection.prepareStatement(sql);
+
+            statement.setInt(1, 0);
+            statement.setInt(2, id_conseiller);
+            statement.setInt(3, id_client);
+
+            int rowsInserted = statement.executeUpdate();
+
+            if (rowsInserted > 0) {
+
+                createbankaccountOk = true;
+                System.out.println("le compte a bien été créer et lié au client et conseiller");
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+        return createbankaccountOk;
+    }
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     public ArrayList<CompteBancaire> searchAccountByAttributes(String crit){
 
         ArrayList<CompteBancaire>listcomptebancaire= new ArrayList();
@@ -22,7 +56,7 @@ public class CompteBancaireDao {
             while (rs.next()){
 
                 Integer numero_compte_bancaire= Integer.valueOf(rs.getString("numero_compte_bancaire"));
-                Integer solde_compte_bancaire= Integer.valueOf(rs.getString("solde_compte_bancaire"));
+                Double solde_compte_bancaire= Double.valueOf(rs.getString("solde_compte_bancaire"));
                 Integer id_client= Integer.valueOf(rs.getString("id_client"));
                 String nom_client=rs.getString("nom_client");
                 String prenom_client=rs.getString("prenom_client");
@@ -62,7 +96,7 @@ public class CompteBancaireDao {
             while (rs.next()){
 
                 Integer numero_compte_bancaire= Integer.valueOf(rs.getString("numero_compte_bancaire"));
-                Integer solde_compte_bancaire= Integer.valueOf(rs.getString("solde_compte_bancaire"));
+                Double solde_compte_bancaire= Double.valueOf(rs.getString("solde_compte_bancaire"));
                 Integer id_client= Integer.valueOf(rs.getString("id_client"));
                 String nom_client=rs.getString("nom_client");
                 String prenom_client=rs.getString("prenom_client");
@@ -108,7 +142,7 @@ public class CompteBancaireDao {
             if (rowsInserted > 0) {
 
                 amountupdatedOk = true;
-                System.out.println("le montant a bien été mise a jour'");
+                System.out.println("le montant a bien été mise a jour");
             }
 
         } catch (SQLException e) {

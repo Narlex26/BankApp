@@ -68,7 +68,7 @@ public class MoneyWithdrawalController {
 
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.initOwner(mainapp.getPrimaryStage());
-                alert.setTitle("Erreur lors de la mise a jour de votre soldes");
+                alert.setTitle("Erreur lors de la mise a jour de votre solde");
                 alert.setHeaderText("Il y'a eu une erreur lors de la mise a jour de votre solde");
                 alert.setContentText("Merci de vérifier que le montant ou la date soit correct ou réessayer plus tard");
 
