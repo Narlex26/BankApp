@@ -45,7 +45,6 @@ public class MoneyWithdrawalController {
         OperationBancaireDao operationBancaireDao = new OperationBancaireDao();
         CompteBancaireDao compteBancaireDao = new CompteBancaireDao();
 
-        Integer.parseInt(tfAmountWithdrawal.getText());
         Double amount = Double.parseDouble(tfAmountWithdrawal.getText());
 
         LocalDate dateofdeposit= dpDateOfWithdrawal.getValue();
