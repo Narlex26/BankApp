@@ -43,6 +43,10 @@ public class BankAccountDetailsController {
     @FXML
     private Label soldes_compte_bancaire;
     @FXML
+    private Label totalDeposit;
+    @FXML
+    private Label totalWithdrawal;
+    @FXML
     CompteBancaire comptebancaire;
     private String login;
 
@@ -108,6 +112,32 @@ public class BankAccountDetailsController {
         cl_date_operation.setCellValueFactory(cellData-> cellData.getValue().getDate_operation_bancaire());
     }
 
+    public void getTotalDepositOperationsForLastMonth() {
+
+        OperationBancaireDao operationBancaireDao = new OperationBancaireDao();
+        CompteBancaire compteBancaire = this.comptebancaire;
+
+        String type_operation = "Depot";
+        Integer numero_compte_bancaire = compteBancaire.getNumero_compte_bancaire();
+
+        Double total_operation = operationBancaireDao.getTotalOperationsForLastMonth(type_operation, numero_compte_bancaire);
+
+        totalDeposit.setText(total_operation +" €");
+    }
+
+    public void getTotalWithdrawalOperationsForLastMonth() {
+
+        OperationBancaireDao operationBancaireDao = new OperationBancaireDao();
+        CompteBancaire compteBancaire = this.comptebancaire;
+
+        String type_operation = "Retrait";
+        Integer numero_compte_bancaire = compteBancaire.getNumero_compte_bancaire();
+
+        Double total_operation = operationBancaireDao.getTotalOperationsForLastMonth(type_operation, numero_compte_bancaire);
+
+        totalWithdrawal.setText(total_operation +" €");
+    }
+
     public void refreshInfoAndTransactionBankAccount(){
         CompteBancaireDao compteBancaireDao = new CompteBancaireDao();
 
@@ -142,6 +172,12 @@ public class BankAccountDetailsController {
         //------------------------------------------------------------------------------------------
 
         this.showTransactionBankAccount();
+        //------------------------------------------------------------------------------------------
+
+        this.getTotalDepositOperationsForLastMonth();
+        //------------------------------------------------------------------------------------------
+
+        this.getTotalWithdrawalOperationsForLastMonth();
     }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------

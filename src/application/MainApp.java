@@ -158,6 +158,8 @@ public class MainApp extends Application {
             bankAccountDetailsController.setLogin(login);
             bankAccountDetailsController.showInfoBankAccount();
             bankAccountDetailsController.showTransactionBankAccount();
+            bankAccountDetailsController.getTotalWithdrawalOperationsForLastMonth();
+            bankAccountDetailsController.getTotalDepositOperationsForLastMonth();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -231,7 +233,6 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
-
 
 
     /**

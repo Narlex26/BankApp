@@ -115,4 +115,41 @@ public class OperationBancaireDao {
     }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public Double getTotalOperationsForLastMonth(String type_operation, int id_client) {
+        double total_operation = 0;
+
+        try {
+
+            String sql = "SELECT SUM(montant_operation_bancaire) " +
+                    "FROM operation_bancaire, type_operation " +
+                    "WHERE type_operation.id_type_operation = operation_bancaire.id_type_operation " +
+                    "AND type_operation.libelle_type_operation = ? " +
+                    "AND operation_bancaire.numero_compte_bancaire = ? " +
+                    "AND date_operation_bancaire >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+            PreparedStatement statement = laConnection.prepareStatement(sql);
+
+
+            statement.setString(1, type_operation);
+            statement.setInt(2, id_client);
+
+            // On exécute la requête et on récupère le résultat
+            ResultSet result = statement.executeQuery();
+
+            // Si la requête retourne des résultats, on récupère la somme des opérations bancaires
+            if (result.next()) {
+                total_operation = result.getDouble(1);
+            }
+
+            statement.close();
+            result.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return total_operation;
+    }
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 }
