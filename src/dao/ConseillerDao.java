@@ -2,10 +2,13 @@ package dao;
 
 import model.Conseiller;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.*;
 
 public class ConseillerDao {
     Connection laConnection = Dao.initConnection();
@@ -16,19 +19,32 @@ public class ConseillerDao {
 
         try {
 
-            Statement st = laConnection.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM conseiller WHERE nom_utilisateur_conseiller='" + login
-                    + "' and password_conseiller='" + password + "'");
+            // Hash password using sha256
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = md.digest(password.getBytes());
+            StringBuilder hashBuilder = new StringBuilder();
+            for (byte b : hashBytes) {
+                hashBuilder.append(String.format("%02x", b));
+            }
+            String hashedPassword = hashBuilder.toString();
+
+            //requête de connexion
+            String sql = "SELECT * FROM conseiller WHERE nom_utilisateur_conseiller=? and password_conseiller=?";
+            PreparedStatement statement = laConnection.prepareStatement(sql);
+
+            statement.setString(1, login);
+            statement.setString(2, hashedPassword);
+
+            ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
-
                 connexionOk = true;
                 System.out.println("Le conseiller est bien présent en base de données");
-
             }
 
         } catch (SQLException e) {
-
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
